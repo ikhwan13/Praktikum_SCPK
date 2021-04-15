@@ -1,0 +1,67 @@
+[System]
+Name='Fuzzy_TokoBarang'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=3
+NumRules=10
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='hargaBarang'
+Range=[0 10]
+NumMFs=3
+MF1='murah':'gaussmf',[1.699 0]
+MF2='standar':'gaussmf',[1.699 5]
+MF3='mahal':'gaussmf',[1.699 10]
+
+[Input2]
+Name='kelengkapanBarang'
+Range=[0 30]
+NumMFs=2
+MF1='tidakLengkap':'trimf',[-12 0 18]
+MF2='lengkap':'trimf',[12 30 42]
+
+[Input3]
+Name='pelayanan'
+Range=[0 10]
+NumMFs=2
+MF1='buruk':'trimf',[-4 0 6.5]
+MF2='bagus':'trimf',[3.5 10 14]
+
+[Output1]
+Name='beliBarang'
+Range=[0 10]
+NumMFs=2
+MF1='tidakBeli':'trimf',[-4 0 6]
+MF2='beli':'trimf',[4 10 14]
+
+[Output2]
+Name='datangLagi'
+Range=[0 10]
+NumMFs=2
+MF1='tidakDatangLagi':'trimf',[-4 0 6]
+MF2='datangLagi':'trimf',[4 10 14]
+
+[Output3]
+Name='rekomendasikanToko'
+Range=[0 10]
+NumMFs=2
+MF1='tidakMerekomendasikan':'trimf',[-4 0 6]
+MF2='merekomendasikan':'trimf',[4 10 14]
+
+[Rules]
+1 2 2, 2 2 2 (1) : 1
+1 0 0, 2 0 0 (1) : 1
+2 1 2, 2 0 0 (1) : 1
+3 1 1, 1 1 1 (1) : 1
+3 2 1, 1 0 1 (1) : 1
+1 1 1, 2 1 1 (1) : 1
+2 2 1, 2 2 0 (1) : 1
+2 1 2, 2 2 0 (1) : 1
+2 1 1, 1 0 1 (1) : 1
+3 2 2, 2 0 1 (1) : 1
